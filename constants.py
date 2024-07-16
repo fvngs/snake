@@ -27,3 +27,12 @@ if os.path.isfile('textures/snake_body.png'):
 else:
     bodytexture = pygame.Surface((snake_block, snake_block))
     bodytexture.fill(green)
+
+
+#TODO: create a constant that lowers the brightness of the background image + cropping from center instead of stretching
+if os.path.isfile('textures/background.png'):
+    background_texture = pygame.image.load('textures/background.png')
+    background_texture = pygame.transform.scale(background_texture, (dis_width, dis_height))
+else:
+    background_texture = pygame.Surface((dis_width, dis_height))
+    background_texture.fill(black)

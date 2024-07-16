@@ -58,7 +58,7 @@ def gameLoop():
     while not game_over:
 
         while game_close == True:
-            dis.fill(black)
+            dis.blit(background_texture, (0, 0))
             message("You Lost! Press Q-Quit or R-Restart", red)
             our_score(Length_of_snake - 1)
             pygame.display.update()
@@ -96,7 +96,7 @@ def gameLoop():
             game_close = True
         x1 += x1_change
         y1 += y1_change
-        dis.fill(black)
+        dis.blit(background_texture, (0, 0))
         pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
         snake_Head = []
         snake_Head.append(x1)
