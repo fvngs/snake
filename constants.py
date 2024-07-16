@@ -1,3 +1,6 @@
+import os
+import pygame
+
 white = (255, 255, 255)
 yellow = (255, 255, 102)
 black = (0, 0, 0)
@@ -5,8 +8,15 @@ red = (213, 50, 80)
 green = (0, 255, 0)
 blue = (50, 153, 213)
 
-dis_width = 400
-dis_height = 400
+dis_width = 1000
+dis_height = 1000
 
-snake_block = 10
-snake_speed = 10
+snake_block = int(dis_height / 40)
+snake_speed = 15  # A fixed speed for consistent gameplay
+
+if os.path.isfile('textures/snake_head.png'):
+    headtexture = pygame.image.load('textures/snake_head.png')
+    headtexture = pygame.transform.scale(headtexture, (snake_block, snake_block))
+else:
+    headtexture = pygame.Surface((snake_block, snake_block))
+    headtexture.fill(green)
