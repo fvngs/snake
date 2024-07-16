@@ -31,7 +31,7 @@ def our_snake(snake_block, snake_list, direction):
         if i == len(snake_list) - 1:
             dis.blit(head_texture, [x[0], x[1]])
         else:
-            pygame.draw.rect(dis, green, [x[0], x[1], snake_block, snake_block])
+            dis.blit(bodytexture, [x[0], x[1]])
 
 def message(msg, color):
     mesg = font_style.render(msg, True, color)

@@ -12,7 +12,7 @@ dis_width = 1000
 dis_height = 1000
 
 snake_block = int(dis_height / 40)
-snake_speed = 15  # A fixed speed for consistent gameplay
+snake_speed = 15
 
 if os.path.isfile('textures/snake_head.png'):
     headtexture = pygame.image.load('textures/snake_head.png')
@@ -20,3 +20,10 @@ if os.path.isfile('textures/snake_head.png'):
 else:
     headtexture = pygame.Surface((snake_block, snake_block))
     headtexture.fill(green)
+
+if os.path.isfile('textures/snake_body.png'):
+    bodytexture = pygame.image.load('textures/snake_body.png')
+    bodytexture = pygame.transform.scale(bodytexture, (snake_block, snake_block))
+else:
+    bodytexture = pygame.Surface((snake_block, snake_block))
+    bodytexture.fill(green)
