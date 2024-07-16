@@ -14,7 +14,7 @@ clock = pygame.time.Clock()
 font_style = pygame.font.Font('opensans.ttf')
 
 def our_score(score):
-    value = font_style.render("Your Score: " + str(score), True, white)
+    value = font_style.render("Score: " + str(score), True, white)
     dis.blit(value, [0, 0])
 
 def our_snake(snake_block, snake_list):
@@ -45,7 +45,7 @@ def gameLoop():
 
         while game_close == True:
             dis.fill(black)
-            message("You Lost! Press Q-Quit or C-Play Again", red)
+            message("You Lost! Press Q-Quit or R-Restart", red)
             our_score(Length_of_snake - 1)
             pygame.display.update()
 
@@ -53,33 +53,34 @@ def gameLoop():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_q:
                         game_over = True
+                        
                         game_close = False
-                    if event.key == pygame.K_c:
+                    if event.key == pygame.K_r:
                         gameLoop()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT and x1_change != snake_block:
+                if event.key in [pygame.K_LEFT, pygame.K_a] and x1_change != snake_block:
                     x1_change = -snake_block
                     y1_change = 0
-                elif event.key == pygame.K_RIGHT and x1_change != -snake_block:
+                elif event.key in [pygame.K_RIGHT, pygame.K_d] and x1_change != -snake_block:
                     x1_change = snake_block
                     y1_change = 0
-                elif event.key == pygame.K_UP and y1_change != snake_block:
+                elif event.key in [pygame.K_UP, pygame.K_w] and y1_change != snake_block:
                     y1_change = -snake_block
                     x1_change = 0
-                elif event.key == pygame.K_DOWN and y1_change != -snake_block:
+                elif event.key in [pygame.K_DOWN, pygame.K_s] and y1_change != -snake_block:
                     y1_change = snake_block
                     x1_change = 0
 
         if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
             game_close = True
-        x1 += x1_change
+        x1 += x1_change 
         y1 += y1_change
         dis.fill(black)
-        pygame.draw.rect(dis, green, [foodx, foody, snake_block, snake_block])
+        pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
         snake_Head = []
         snake_Head.append(x1)
         snake_Head.append(y1)

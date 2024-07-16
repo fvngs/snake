@@ -9,4 +9,4 @@ dis_width = 400
 dis_height = 400
 
 snake_block = 10
-snake_speed = 15
+snake_speed = 10
