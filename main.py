@@ -95,24 +95,23 @@ def gameLoop():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
-
-        keys = pygame.key.get_pressed()
-        if (keys[pygame.K_LEFT] or keys[pygame.K_a]) and direction != 'right':
-            x1_change = -snake_block
-            y1_change = 0
-            direction = 'left'
-        elif (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and direction != 'left':
-            x1_change = snake_block
-            y1_change = 0
-            direction = 'right'
-        elif (keys[pygame.K_UP] or keys[pygame.K_w]) and direction != 'down':
-            y1_change = -snake_block
-            x1_change = 0
-            direction = 'up'
-        elif (keys[pygame.K_DOWN] or keys[pygame.K_s]) and direction != 'up':
-            y1_change = snake_block
-            x1_change = 0
-            direction = 'down'
+            elif event.type == pygame.KEYDOWN:
+                if (event.key == pygame.K_LEFT or event.key == pygame.K_a) and direction != 'right':
+                    x1_change = -snake_block
+                    y1_change = 0
+                    direction = 'left'
+                elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d) and direction != 'left':
+                    x1_change = snake_block
+                    y1_change = 0
+                    direction = 'right'
+                elif (event.key == pygame.K_UP or event.key == pygame.K_w) and direction != 'down':
+                    y1_change = -snake_block
+                    x1_change = 0
+                    direction = 'up'
+                elif (event.key == pygame.K_DOWN or event.key == pygame.K_s) and direction != 'up':
+                    y1_change = snake_block
+                    x1_change = 0
+                    direction = 'down'
 
         if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
             game_close = True
