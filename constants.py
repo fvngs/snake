@@ -7,6 +7,7 @@ black = (0, 0, 0)
 red = (213, 50, 80)
 green = (0, 255, 0)
 blue = (50, 153, 213)
+gray = (50, 50, 50)
 
 dis_width = 1000
 dis_height = 1000

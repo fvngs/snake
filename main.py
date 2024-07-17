@@ -1,5 +1,4 @@
 import pygame
-import time
 import random
 
 from constants import *
@@ -12,6 +11,8 @@ pygame.display.set_caption('fvngs/snake')
 clock = pygame.time.Clock()
 
 font_style = pygame.font.Font('font.ttf', 35)
+font_style_large = pygame.font.Font('font.ttf', 50)
+
 
 def our_score(score):
     value = font_style.render("Score: " + str(score), True, white)
@@ -34,8 +35,27 @@ def our_snake(snake_block, snake_list, direction):
             dis.blit(bodytexture, [x[0], x[1]])
 
 def message(msg, color):
-    mesg = font_style.render(msg, True, color)
-    dis.blit(mesg, [dis_width / 5, dis_height / 2])
+    mesg = font_style_large.render(msg, True, color)
+    shadow = font_style_large.render(msg, True, gray)
+    text_rect = mesg.get_rect(center=(dis_width / 2, dis_height / 2))
+    shadow_rect = text_rect.copy()
+    shadow_rect.move_ip(2, 2)
+    dis.blit(shadow, shadow_rect)
+    dis.blit(mesg, text_rect)
+
+
+def draw_grid():
+    grid_surface = pygame.Surface((dis_width, dis_height))
+    grid_surface.set_alpha(128)
+
+    for x in range(0, dis_width, snake_block):
+        pygame.draw.line(grid_surface, gray, (x, 0), (x, dis_height))
+    for y in range(0, dis_height, snake_block):
+        pygame.draw.line(grid_surface, gray, (0, y), (dis_width, y))
+    
+    return grid_surface
+
+grid_surface = draw_grid()
 
 def gameLoop():
     game_over = False
@@ -57,9 +77,9 @@ def gameLoop():
 
     while not game_over:
 
-        while game_close == True:
+        while game_close:
             dis.blit(background_texture, (0, 0))
-            message("You Lost! Press Q-Quit or R-Restart", red)
+            message("You Lost! Press Q-Quit or R-Restart", white)
             our_score(Length_of_snake - 1)
             pygame.display.update()
 
@@ -70,37 +90,38 @@ def gameLoop():
                         game_close = False
                     if event.key == pygame.K_r:
                         gameLoop()
+                        return
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_over = True
-            if event.type == pygame.KEYDOWN:
-                if event.key in [pygame.K_LEFT, pygame.K_a] and x1_change != snake_block:
-                    x1_change = -snake_block
-                    y1_change = 0
-                    direction = 'left'
-                elif event.key in [pygame.K_RIGHT, pygame.K_d] and x1_change != -snake_block:
-                    x1_change = snake_block
-                    y1_change = 0
-                    direction = 'right'
-                elif event.key in [pygame.K_UP, pygame.K_w] and y1_change != snake_block:
-                    y1_change = -snake_block
-                    x1_change = 0
-                    direction = 'up'
-                elif event.key in [pygame.K_DOWN, pygame.K_s] and y1_change != -snake_block:
-                    y1_change = snake_block
-                    x1_change = 0
-                    direction = 'down'
+
+        keys = pygame.key.get_pressed()
+        if (keys[pygame.K_LEFT] or keys[pygame.K_a]) and direction != 'right':
+            x1_change = -snake_block
+            y1_change = 0
+            direction = 'left'
+        elif (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and direction != 'left':
+            x1_change = snake_block
+            y1_change = 0
+            direction = 'right'
+        elif (keys[pygame.K_UP] or keys[pygame.K_w]) and direction != 'down':
+            y1_change = -snake_block
+            x1_change = 0
+            direction = 'up'
+        elif (keys[pygame.K_DOWN] or keys[pygame.K_s]) and direction != 'up':
+            y1_change = snake_block
+            x1_change = 0
+            direction = 'down'
 
         if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
             game_close = True
         x1 += x1_change
         y1 += y1_change
         dis.blit(background_texture, (0, 0))
+        dis.blit(grid_surface, (0, 0))
         pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
-        snake_Head = []
-        snake_Head.append(x1)
-        snake_Head.append(y1)
+        snake_Head = [x1, y1]
         snake_List.append(snake_Head)
         if len(snake_List) > Length_of_snake:
             del snake_List[0]
