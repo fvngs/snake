@@ -10,8 +10,8 @@ pygame.display.set_caption('fvngs/snake')
 
 clock = pygame.time.Clock()
 
-font_style = pygame.font.Font('font.ttf', 35)
-font_style_large = pygame.font.Font('font.ttf', 50)
+font_style = pygame.font.Font('font.ttf', int(dis_width/30))
+font_style_large = pygame.font.Font('font.ttf', int(dis_width/20))
 
 
 def our_score(score):
