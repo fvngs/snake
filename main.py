@@ -19,7 +19,7 @@ def our_score(score):
     value = font_style.render("Score: " + str(score), True, white)
     dis.blit(value, [0, 0])
     timevalue = font_style.render(str(datetime.datetime.today().strftime("%H:%M:%S")), True, white)
-    dis.blit(timevalue, [0, dis_width-50])
+    dis.blit(timevalue, [0, dis_width-(dis_width/25)])
 
 def our_snake(snake_block, snake_list, direction):
     if direction == 'up':
