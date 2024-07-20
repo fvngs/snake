@@ -12,6 +12,10 @@ gray = (50, 50, 50)
 dis_width = 1000
 dis_height = 1000
 
+grow_counter = 0
+grow_segments = 0
+grow_speed = 5
+
 snake_block = int(dis_height / 40)
 snake_speed = 15
 

@@ -79,7 +79,6 @@ def gameLoop():
     foody = round(random.randrange(0, dis_height - snake_block) / snake_block) * snake_block
 
     while not game_over:
-
         while game_close:
             dis.blit(background_texture, (0, 0))
             message("You Lost! Press Q-Quit or R-Restart", white)
@@ -132,6 +131,11 @@ def gameLoop():
             if x == snake_Head:
                 game_close = True
 
+        if grow_counter > 0:
+            grow_counter -= 1
+            if grow_counter == 0:
+                Length_of_snake += 1
+
         our_snake(snake_block, snake_List, direction)
         our_score(Length_of_snake - 1)
 
@@ -140,7 +144,7 @@ def gameLoop():
         if x1 == foodx and y1 == foody:
             foodx = round(random.randrange(0, dis_width - snake_block) / snake_block) * snake_block
             foody = round(random.randrange(0, dis_height - snake_block) / snake_block) * snake_block
-            Length_of_snake += 1
+            grow_counter = grow_speed
 
         clock.tick(snake_speed)
 
