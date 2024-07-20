@@ -24,10 +24,9 @@ with open('config.json', 'r') as f:
     
     pause_hotkey = config['pause_hotkey']
     
-    if config['grow_animation'] == "True":
-        animation = True
-    else:
-        animation = False
+    animation = config['grow_animation'] == "True"
+    grid = config["background_grid"] == "True"
+    
 
 if os.path.isfile('textures/snake_head.png'):
     headtexture = pygame.image.load('textures/snake_head.png')

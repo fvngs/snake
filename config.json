@@ -3,5 +3,6 @@
     "grow_speed": 5,
     "snake_speed": 15,
     "grow_animation": "False",
+    "background_grid": "True",
     "pause_hotkey": "P"
 }
