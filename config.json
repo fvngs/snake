@@ -2,5 +2,6 @@
     "resolution": 1000,
     "grow_speed": 5,
     "snake_speed": 15,
-    "grow_animation": "False"
+    "grow_animation": "False",
+    "pause_hotkey": "P"
 }

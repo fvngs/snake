@@ -22,6 +22,8 @@ with open('config.json', 'r') as f:
     
     animation = bool()
     
+    pause_hotkey = config['pause_hotkey']
+    
     if config['grow_animation'] == "True":
         animation = True
     else:
