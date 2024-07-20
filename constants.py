@@ -26,7 +26,23 @@ with open('config.json', 'r') as f:
     
     animation = config['grow_animation'] == "True"
     grid = config["background_grid"] == "True"
-    time = config["show_time"] == "True"
+    showtime = config["show_time"] == "True"
+    showscore = config["show_score"] == "True"
+    showhighscore = config["save_highscore"] == "True"
+
+
+try:
+    with open('highscore', 'r') as f:
+        highscore = int(f.readline())
+        print(highscore)
+except FileNotFoundError:
+    with open('highscore', 'w+') as f:
+        f.write('0')
+        print(highscore)
+except ValueError:
+    with open('highscore', 'w+') as f:
+        f.write('0')
+        print(highscore)
     
 
 if os.path.isfile('textures/snake_head.png'):

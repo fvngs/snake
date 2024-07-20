@@ -5,5 +5,7 @@
     "grow_animation": "False",
     "background_grid": "True",
     "pause_hotkey": "P",
-    "show_time": "True"
+    "show_time": "True",
+    "show_score": "True",
+    "save_highscore": "True"
 }

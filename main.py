@@ -2,6 +2,7 @@ import pygame
 import random
 import datetime
 
+
 from constants import *
 
 pygame.init()
@@ -16,9 +17,12 @@ font_style_large = pygame.font.Font('font.ttf', int(dis_width/20))
 
 
 def our_score(score):
-    value = font_style.render("Score: " + str(score), True, white)
-    dis.blit(value, [0, 0])
-    if time:
+    if showscore:
+        if showhighscore: hs_counter = f"({highscore})"
+        else: hs_counter = ""
+        value = font_style.render(f"Score: {score} {hs_counter}", True, white)
+        dis.blit(value, [0, 0])
+    if showtime:
         timevalue = font_style.render(str(datetime.datetime.today().strftime("%H:%M:%S")), True, white)
         dis.blit(timevalue, [0, dis_width-(dis_width/25)])
 
@@ -46,6 +50,7 @@ def message(msg, color):
     shadow_rect.move_ip(2, 2)
     dis.blit(shadow, shadow_rect)
     dis.blit(mesg, text_rect)
+    
 
 
 def draw_grid():
@@ -62,6 +67,7 @@ def draw_grid():
 grid_surface = draw_grid()
 
 def gameLoop():
+    global highscore
     game_over = False
     game_close = False
 
@@ -143,6 +149,8 @@ def gameLoop():
 
         our_snake(snake_block, snake_List, direction)
         our_score(Length_of_snake - 1)
+        if (Length_of_snake - 1) > highscore:
+            highscore = Length_of_snake
 
         pygame.display.update()
 
@@ -152,10 +160,13 @@ def gameLoop():
             if animation:
                 grow_counter = grow_speed
             else:
-                Length_of_snake += 1
+                Length_of_snake += 1 
 
         clock.tick(snake_speed)
 
+    with open('highscore', 'w') as f:
+        f.write(str(highscore))
+    
     pygame.quit()
     quit()
 
