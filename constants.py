@@ -1,5 +1,6 @@
 import os
 import pygame
+import json
 
 white = (255, 255, 255)
 yellow = (255, 255, 102)
@@ -9,15 +10,22 @@ green = (0, 255, 0)
 blue = (50, 153, 213)
 gray = (50, 50, 50)
 
-dis_width = 1000
-dis_height = 1000
+with open('config.json', 'r') as f:
+    config = json.load(f)
+    dis_width = config['resolution']
+    dis_height = dis_width
 
-grow_counter = 0
-grow_segments = 0
-grow_speed = 5
+    grow_speed = config['grow_speed']
 
-snake_block = int(dis_height / 40)
-snake_speed = 15
+    snake_block = int(dis_height / 40)
+    snake_speed = config['snake_speed']
+    
+    animation = bool()
+    
+    if config['grow_animation'] == "True":
+        animation = True
+    else:
+        animation = False
 
 if os.path.isfile('textures/snake_head.png'):
     headtexture = pygame.image.load('textures/snake_head.png')

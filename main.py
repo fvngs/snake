@@ -77,6 +77,9 @@ def gameLoop():
 
     foodx = round(random.randrange(0, dis_width - snake_block) / snake_block) * snake_block
     foody = round(random.randrange(0, dis_height - snake_block) / snake_block) * snake_block
+    
+    grow_counter = 0
+    grow_segments = 0
 
     while not game_over:
         while game_close:
@@ -131,10 +134,11 @@ def gameLoop():
             if x == snake_Head:
                 game_close = True
 
-        if grow_counter > 0:
-            grow_counter -= 1
-            if grow_counter == 0:
-                Length_of_snake += 1
+        if animation:
+            if grow_counter > 0:
+                grow_counter -= 1
+                if grow_counter == 0:
+                    Length_of_snake += 1
 
         our_snake(snake_block, snake_List, direction)
         our_score(Length_of_snake - 1)
@@ -144,7 +148,10 @@ def gameLoop():
         if x1 == foodx and y1 == foody:
             foodx = round(random.randrange(0, dis_width - snake_block) / snake_block) * snake_block
             foody = round(random.randrange(0, dis_height - snake_block) / snake_block) * snake_block
-            grow_counter = grow_speed
+            if animation:
+                grow_counter = grow_speed
+            else:
+                Length_of_snake += 1
 
         clock.tick(snake_speed)
 
