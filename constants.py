@@ -26,6 +26,7 @@ with open('config.json', 'r') as f:
     
     animation = config['grow_animation'] == "True"
     grid = config["background_grid"] == "True"
+    time = config["show_time"] == "True"
     
 
 if os.path.isfile('textures/snake_head.png'):

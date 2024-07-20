@@ -4,5 +4,6 @@
     "snake_speed": 15,
     "grow_animation": "False",
     "background_grid": "True",
-    "pause_hotkey": "P"
+    "pause_hotkey": "P",
+    "show_time": "True"
 }
