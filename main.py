@@ -138,6 +138,7 @@ def gameLoop():
         x1 += x1_change
         y1 += y1_change
         dis.blit(background_texture, (0, 0))
+        dis.blit(mask_texture, (0, 0))
         if grid: dis.blit(grid_surface, (0, 0))
         pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
         snake_Head = [x1, y1]

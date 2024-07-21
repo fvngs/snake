@@ -32,6 +32,8 @@ with open('config.json', 'r') as f:
     showtime = config["show_time"] == "True"
     showscore = config["show_score"] == "True"
     showhighscore = config["save_highscore"] == "True"
+    
+    bg_alpha = config['background_transparency']
 
 
 try:
@@ -64,6 +66,9 @@ else:
 if os.path.isfile('textures/background.png'):
     background_texture = pygame.image.load('textures/background.png')
     background_texture = pygame.transform.scale(background_texture, (dis_width, dis_height))
+    mask_texture = pygame.Surface((dis_width, dis_height))
+    mask_texture.fill(black)
+    mask_texture.set_alpha(bg_alpha)
 else:
     background_texture = pygame.Surface((dis_width, dis_height))
     background_texture.fill(black)
