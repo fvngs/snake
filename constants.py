@@ -34,15 +34,12 @@ with open('config.json', 'r') as f:
 try:
     with open('highscore', 'r') as f:
         highscore = int(f.readline())
-        print(highscore)
 except FileNotFoundError:
     with open('highscore', 'w+') as f:
         f.write('0')
-        print(highscore)
 except ValueError:
     with open('highscore', 'w+') as f:
         f.write('0')
-        print(highscore)
     
 
 if os.path.isfile('textures/snake_head.png'):
