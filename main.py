@@ -17,10 +17,18 @@ font_style_large = pygame.font.Font('font.ttf', int(dis_width/20))
 
 
 def our_score(score):
+    global highscorecheck
+    global color
     if showscore:
-        if showhighscore: hs_counter = f"({highscore})"
+        if showhighscore: 
+            hs_counter = f"({highscore})"
+            if highscorecheck:
+                if score > highscore: 
+                    color = 'green'
+                    highscorecheck = False
+                else: color = 'white'
         else: hs_counter = ""
-        value = font_style.render(f"Score: {score} {hs_counter}", True, white)
+        value = font_style.render(f"Score: {score} {hs_counter}", True, color)
         dis.blit(value, [0, 0])
     if showtime:
         timevalue = font_style.render(str(datetime.datetime.today().strftime("%H:%M:%S")), True, white)
@@ -150,7 +158,7 @@ def gameLoop():
         our_snake(snake_block, snake_List, direction)
         our_score(Length_of_snake - 1)
         if (Length_of_snake - 1) > highscore:
-            highscore = Length_of_snake
+            highscore = Length_of_snake - 1
 
         pygame.display.update()
 

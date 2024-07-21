@@ -10,6 +10,9 @@ green = (0, 255, 0)
 blue = (50, 153, 213)
 gray = (50, 50, 50)
 
+highscorecheck = True
+color = 'white'
+
 with open('config.json', 'r') as f:
     config = json.load(f)
     dis_width = config['resolution']
