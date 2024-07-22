@@ -1,6 +1,7 @@
 import os
 import pygame
 import json
+import time
 
 white = (255, 255, 255)
 yellow = (255, 255, 102)
@@ -12,6 +13,8 @@ gray = (50, 50, 50)
 
 highscorecheck = True
 color = 'white'
+
+game_start = time.time()
 
 with open('config.json', 'r') as f:
     config = json.load(f)
@@ -72,3 +75,5 @@ if os.path.isfile('textures/background.png'):
 else:
     background_texture = pygame.Surface((dis_width, dis_height))
     background_texture.fill(black)
+    mask_texture = pygame.Surface((dis_width, dis_height))
+    mask_texture.fill(black)

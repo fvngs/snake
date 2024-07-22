@@ -2,6 +2,7 @@ import pygame
 import random
 import datetime
 
+from pypresence import Presence
 
 from constants import *
 
@@ -11,6 +12,12 @@ dis = pygame.display.set_mode((dis_width, dis_height))
 pygame.display.set_caption('fvngs/snake')
 
 clock = pygame.time.Clock()
+
+
+client_id = "1264914630682349571"
+
+RPC = Presence(client_id)
+RPC.connect()
 
 font_style = pygame.font.Font('font.ttf', int(dis_width/30))
 font_style_large = pygame.font.Font('font.ttf', int(dis_width/20))
@@ -76,6 +83,7 @@ grid_surface = draw_grid()
 
 def gameLoop():
     global highscore
+    global mask_texture
     game_over = False
     game_close = False
 
@@ -169,7 +177,9 @@ def gameLoop():
             if animation:
                 grow_counter = grow_speed
             else:
-                Length_of_snake += 1 
+                Length_of_snake += 1
+                
+        RPC.update(state=f"score: {Length_of_snake-1} | highscore: {highscore}", start=game_start, large_image="big-image", large_text="snake")
 
         clock.tick(snake_speed)
 
