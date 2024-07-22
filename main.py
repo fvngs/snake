@@ -10,6 +10,7 @@ pygame.init()
 
 dis = pygame.display.set_mode((dis_width, dis_height))
 pygame.display.set_caption('fvngs/snake')
+pygame.display.set_icon(icon)
 
 clock = pygame.time.Clock()
 

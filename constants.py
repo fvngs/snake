@@ -14,6 +14,8 @@ gray = (50, 50, 50)
 highscorecheck = True
 color = 'white'
 
+icon = pygame.image.load('textures\icon.png')
+
 game_start = time.time()
 
 with open('config.json', 'r') as f:
