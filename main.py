@@ -94,6 +94,7 @@ def gameLoop():
     y1_change = 0
 
     direction = 'up'
+    last_direction = direction
 
     snake_List = []
     Length_of_snake = 1
@@ -124,19 +125,19 @@ def gameLoop():
             if event.type == pygame.QUIT:
                 game_over = True
             elif event.type == pygame.KEYDOWN:
-                if (event.key == pygame.K_LEFT or event.key == pygame.K_a) and direction != 'right':
+                if (event.key == pygame.K_LEFT or event.key == pygame.K_a) and direction != 'right' and last_direction != 'right':
                     x1_change = -snake_block
                     y1_change = 0
                     direction = 'left'
-                elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d) and direction != 'left':
+                elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d) and direction != 'left' and last_direction != 'left':
                     x1_change = snake_block
                     y1_change = 0
                     direction = 'right'
-                elif (event.key == pygame.K_UP or event.key == pygame.K_w) and direction != 'down':
+                elif (event.key == pygame.K_UP or event.key == pygame.K_w) and direction != 'down' and last_direction != 'down':
                     y1_change = -snake_block
                     x1_change = 0
                     direction = 'up'
-                elif (event.key == pygame.K_DOWN or event.key == pygame.K_s) and direction != 'up':
+                elif (event.key == pygame.K_DOWN or event.key == pygame.K_s) and direction != 'up' and last_direction != 'up':
                     y1_change = snake_block
                     x1_change = 0
                     direction = 'down'
@@ -182,6 +183,8 @@ def gameLoop():
         if do_rpc: RPC.update(state=f"score: {Length_of_snake-1} | highscore: {highscore}", start=game_start, large_image="big-image", large_text="snake")
 
         clock.tick(snake_speed)
+
+        last_direction = direction
 
     with open('highscore', 'w') as f:
         f.write(str(highscore))
