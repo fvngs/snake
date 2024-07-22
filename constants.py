@@ -35,6 +35,7 @@ with open('config.json', 'r') as f:
     showtime = config["show_time"] == "True"
     showscore = config["show_score"] == "True"
     showhighscore = config["save_highscore"] == "True"
+    do_rpc = config["discord-rpc"] == "True"
     
     bg_alpha = config['background_transparency']
 
