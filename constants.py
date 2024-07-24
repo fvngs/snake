@@ -41,6 +41,9 @@ with open('config.json', 'r') as f:
     
     bg_alpha = config['background_transparency']
     grid_alpha = config['grid_transparency']
+    
+    snake_color = config['snake_color']
+    food_color = config['food_color']
 
 
 try:
@@ -59,14 +62,14 @@ if os.path.isfile('textures/snake_head.png'):
     headtexture = pygame.transform.scale(headtexture, (snake_block, snake_block))
 else:
     headtexture = pygame.Surface((snake_block, snake_block))
-    headtexture.fill(green)
+    headtexture.fill(snake_color)
 
 if os.path.isfile('textures/snake_body.png'):
     bodytexture = pygame.image.load('textures/snake_body.png')
     bodytexture = pygame.transform.scale(bodytexture, (snake_block, snake_block))
 else:
     bodytexture = pygame.Surface((snake_block, snake_block))
-    bodytexture.fill(green)
+    bodytexture.fill(snake_color)
 
 
 if os.path.isfile('textures/background.png'):

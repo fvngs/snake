@@ -149,7 +149,7 @@ def gameLoop():
         dis.blit(background_texture, (0, 0))
         dis.blit(mask_texture, (0, 0))
         if grid: dis.blit(grid_surface, (0, 0))
-        pygame.draw.rect(dis, red, [foodx, foody, snake_block, snake_block])
+        pygame.draw.rect(dis, food_color, [foodx, foody, snake_block, snake_block])
         snake_Head = [x1, y1]
         snake_List.append(snake_Head)
         if len(snake_List) > Length_of_snake:
