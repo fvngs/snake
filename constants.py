@@ -40,6 +40,7 @@ with open('config.json', 'r') as f:
     do_rpc = config["discord-rpc"] == "True"
     
     bg_alpha = config['background_transparency']
+    grid_alpha = config['grid_transparency']
 
 
 try:
@@ -68,7 +69,6 @@ else:
     bodytexture.fill(green)
 
 
-#TODO: create a constant that lowers the brightness of the background image + cropping from center instead of stretching
 if os.path.isfile('textures/background.png'):
     background_texture = pygame.image.load('textures/background.png')
     background_texture = pygame.transform.scale(background_texture, (dis_width, dis_height))

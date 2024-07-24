@@ -9,5 +9,6 @@
     "show_time": "True",
     "show_score": "True",
     "save_highscore": "True",
-    "background_transparency": 128
+    "background_transparency": 128,
+    "grid_transparency": 128
 }

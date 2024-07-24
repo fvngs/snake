@@ -70,7 +70,7 @@ def message(msg, color):
 
 def draw_grid():
     grid_surface = pygame.Surface((dis_width, dis_height))
-    grid_surface.set_alpha(128)
+    grid_surface.set_alpha(grid_alpha)
 
     for x in range(0, dis_width, snake_block):
         pygame.draw.line(grid_surface, gray, (x, 0), (x, dis_height))
