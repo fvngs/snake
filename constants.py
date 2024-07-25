@@ -11,6 +11,13 @@ green = (0, 255, 0)
 blue = (50, 153, 213)
 gray = (50, 50, 50)
 
+def mapkey(key_str):
+    return getattr(pygame, f'K_{key_str}')
+
+
+
+
+
 highscorecheck = True
 color = 'white'
 
@@ -44,7 +51,14 @@ with open('config.json', 'r') as f:
     
     snake_color = config['snake_color']
     food_color = config['food_color']
-
+    
+    
+    key_mapping = {
+    'left': [mapkey(key) for key in config['keys']['left']],
+    'right': [mapkey(key) for key in config['keys']['right']],
+    'up': [mapkey(key) for key in config['keys']['up']],
+    'down': [mapkey(key) for key in config['keys']['down']]
+}
 
 try:
     with open('highscore', 'r') as f:

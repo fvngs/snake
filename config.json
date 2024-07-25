@@ -12,5 +12,11 @@
     "background_transparency": 128,
     "grid_transparency": 128,
     "snake_color": [0, 255, 0],
-    "food_color": [213, 50, 80]
+    "food_color": [213, 50, 80],
+    "keys": {
+        "left": ["a", "LEFT"],
+        "right": ["d", "RIGHT"],
+        "up": ["w", "UP"],
+        "down": ["s", "DOWN"]
+    }
 }

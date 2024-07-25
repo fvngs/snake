@@ -125,19 +125,19 @@ def gameLoop():
             if event.type == pygame.QUIT:
                 game_over = True
             elif event.type == pygame.KEYDOWN:
-                if (event.key == pygame.K_LEFT or event.key == pygame.K_a) and direction != 'right' and last_direction != 'right':
+                if (event.key in key_mapping['left']) and direction != 'right' and last_direction != 'right':
                     x1_change = -snake_block
                     y1_change = 0
                     direction = 'left'
-                elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d) and direction != 'left' and last_direction != 'left':
+                elif (event.key in key_mapping['right']) and direction != 'left' and last_direction != 'left':
                     x1_change = snake_block
                     y1_change = 0
                     direction = 'right'
-                elif (event.key == pygame.K_UP or event.key == pygame.K_w) and direction != 'down' and last_direction != 'down':
+                elif (event.key in key_mapping['up']) and direction != 'down' and last_direction != 'down':
                     y1_change = -snake_block
                     x1_change = 0
                     direction = 'up'
-                elif (event.key == pygame.K_DOWN or event.key == pygame.K_s) and direction != 'up' and last_direction != 'up':
+                elif (event.key in key_mapping['down']) and direction != 'up' and last_direction != 'up':
                     y1_change = snake_block
                     x1_change = 0
                     direction = 'down'
