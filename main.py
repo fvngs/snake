@@ -1,9 +1,7 @@
 import pygame
 import random
 import datetime
-
 from pypresence import Presence
-
 from constants import *
 
 pygame.init()
@@ -21,7 +19,6 @@ if do_rpc:
 
 font_style = pygame.font.Font('font.ttf', int(dis_width/30))
 font_style_large = pygame.font.Font('font.ttf', int(dis_width/20))
-
 
 def our_score(score):
     global highscorecheck
@@ -67,7 +64,6 @@ def message(msg, color):
     dis.blit(mesg, text_rect)
     
 
-
 def draw_grid():
     grid_surface = pygame.Surface((dis_width, dis_height))
     grid_surface.set_alpha(grid_alpha)
@@ -108,7 +104,23 @@ def gameLoop():
     while not game_over:
         while game_close:
             dis.blit(background_texture, (0, 0))
-            message("You Lost! Press Q-Quit or R-Restart", white)
+            message("Game Over!", white)
+            final_score_msg = f"Final Score: {Length_of_snake - 1}"
+            high_score_msg = f"High Score: {highscore}"
+            restart_msg = "Press R to Restart, Q to Quit, or M for Main Menu"
+
+            final_score_surface = font_style.render(final_score_msg, True, white)
+            high_score_surface = font_style.render(high_score_msg, True, white)
+            restart_surface = font_style.render(restart_msg, True, white)
+
+            final_score_rect = final_score_surface.get_rect(center=(dis_width / 2, dis_height / 2 + 50))
+            high_score_rect = high_score_surface.get_rect(center=(dis_width / 2, dis_height / 2 + 100))
+            restart_rect = restart_surface.get_rect(center=(dis_width / 2, dis_height / 2 + 150))
+
+            dis.blit(final_score_surface, final_score_rect)
+            dis.blit(high_score_surface, high_score_rect)
+            dis.blit(restart_surface, restart_rect)
+            
             our_score(Length_of_snake - 1)
             pygame.display.update()
 
@@ -120,6 +132,10 @@ def gameLoop():
                     if event.key == pygame.K_r:
                         gameLoop()
                         return
+                    if event.key == pygame.K_m:
+                        main_menu()
+                        return
+
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -192,4 +208,42 @@ def gameLoop():
     pygame.quit()
     quit()
 
-gameLoop()
+def main_menu():
+    menu = True
+    while menu:
+        dis.blit(background_texture, (0, 0))
+        title_msg = "Snake by fvngs"
+        solo_msg = "Press S to Play Solo"
+        ai_msg = "Press A to Play vs AI"
+        
+        title_surface = font_style_large.render(title_msg, True, white)
+        solo_surface = font_style.render(solo_msg, True, white)
+        ai_surface = font_style.render(ai_msg, True, white)
+        
+        title_rect = title_surface.get_rect(center=(dis_width / 2, dis_height / 4))
+        solo_rect = solo_surface.get_rect(center=(dis_width / 2, dis_height / 2))
+        ai_rect = ai_surface.get_rect(center=(dis_width / 2, dis_height / 2 + 50))
+        
+        dis.blit(title_surface, title_rect)
+        dis.blit(solo_surface, solo_rect)
+        dis.blit(ai_surface, ai_rect)
+        
+        pygame.display.update()
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                menu = False
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_s:
+                    menu = False
+                    gameLoop()
+                if event.key == pygame.K_a:
+                    menu = False
+                    message("AI Mode Coming Soon!", white)
+                    pygame.display.update()
+                    pygame.time.wait(2000)
+                    menu = True
+
+main_menu()
