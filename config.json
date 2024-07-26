@@ -13,6 +13,7 @@
     "grid_transparency": 128,
     "snake_color": [0, 255, 0],
     "food_color": [213, 50, 80],
+    "ai_color": [255, 255, 255],
     "keys": {
         "left": ["a", "LEFT"],
         "right": ["d", "RIGHT"],

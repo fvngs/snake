@@ -51,6 +51,7 @@ with open('config.json', 'r') as f:
     
     snake_color = config['snake_color']
     food_color = config['food_color']
+    ai_color = config['ai_color']
     
     
     key_mapping = {
@@ -86,7 +87,7 @@ else:
     bodytexture.fill(snake_color)
     
 ai_texture = pygame.Surface((snake_block, snake_block))
-ai_texture.fill(white)
+ai_texture.fill(ai_color)
 
 
 if os.path.isfile('textures/background.png'):
