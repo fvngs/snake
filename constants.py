@@ -84,6 +84,9 @@ if os.path.isfile('textures/snake_body.png'):
 else:
     bodytexture = pygame.Surface((snake_block, snake_block))
     bodytexture.fill(snake_color)
+    
+ai_texture = pygame.Surface((snake_block, snake_block))
+ai_texture.fill(white)
 
 
 if os.path.isfile('textures/background.png'):
