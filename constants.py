@@ -45,6 +45,7 @@ with open('config.json', 'r') as f:
     showscore = config["show_score"] == "True"
     showhighscore = config["save_highscore"] == "True"
     do_rpc = config["discord-rpc"] == "True"
+    seffect = config["sound_effects"] == "True"
     
     bg_alpha = config['background_transparency']
     grid_alpha = config['grid_transparency']

@@ -173,7 +173,7 @@ def gameLoop():
         if x1 == foodx and y1 == foody:
             foodx = round(random.randrange(0, dis_width - snake_block) / snake_block) * snake_block
             foody = round(random.randrange(0, dis_height - snake_block) / snake_block) * snake_block
-            pygame.mixer.music.play()
+            if seffect: pygame.mixer.music.play()
             if animation:
                 grow_counter = grow_speed
             else:
@@ -376,7 +376,7 @@ def gameLoop_vs_ai():
         if x1 == foodx and y1 == foody:
             foodx = round(random.randrange(0, dis_width - snake_block) / snake_block) * snake_block
             foody = round(random.randrange(0, dis_height - snake_block) / snake_block) * snake_block
-            pygame.mixer.music.play()
+            if seffect: pygame.mixer.music.play()
             if animation:
                 grow_counter1 = grow_speed
             else:
@@ -384,7 +384,7 @@ def gameLoop_vs_ai():
         if x2 == foodx and y2 == foody:
             foodx = round(random.randrange(0, dis_width - snake_block) / snake_block) * snake_block
             foody = round(random.randrange(0, dis_height - snake_block) / snake_block) * snake_block
-            pygame.mixer.music.play()
+            if seffect: pygame.mixer.music.play()
             if animation:
                 grow_counter2 = grow_speed
             else:
