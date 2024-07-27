@@ -5,20 +5,23 @@ open source ultrasimplistic snake game
 
 
 
-## faq
+## features
 
-#### how do i get textures?
-
-i'm working on making my own texture pack but for now there are no official textures due to copyright
-
-#### how do i change the snake speed, colors, etc.?
-
-most modding can be done through constants.py where most things are pretty self explanatory, however there's a very simple modding framework to edit practically anything in the game
+- classic snake gameplay
+- loads of customization options
+- vs. AI mode
 
 
-## roadmap
+## installation
 
-- add a modding and skinning framework
+download python 3.10.* or above
 
-- infinite mode with expanding canvas
+clone the repository using git
+```bash
+  git clone https://github.com/fvngs/snake.git
+```
+run main.py
+## License
+
+[Unlicense](https://unlicense.org/)
 
