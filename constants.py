@@ -14,10 +14,6 @@ gray = (50, 50, 50)
 def mapkey(key_str):
     return getattr(pygame, f'K_{key_str}')
 
-
-
-
-
 highscorecheck = True
 color = 'white'
 
@@ -27,12 +23,16 @@ game_start = time.time()
 
 with open('config.json', 'r') as f:
     config = json.load(f)
-    dis_width = config['resolution']
-    dis_height = dis_width
+    
+    grid_width = config['width']
+    grid_height = config['height']
+    
+    snake_block = 20 
+    
+    dis_width = grid_width * snake_block
+    dis_height = grid_height * snake_block
 
     grow_speed = config['grow_speed']
-
-    snake_block = int(dis_height / 40)
     snake_speed = config['snake_speed']
     
     animation = bool()
@@ -53,7 +53,6 @@ with open('config.json', 'r') as f:
     snake_color = config['snake_color']
     food_color = config['food_color']
     ai_color = config['ai_color']
-    
     
     key_mapping = {
     'left': [mapkey(key) for key in config['keys']['left']],
@@ -89,7 +88,6 @@ else:
     
 ai_texture = pygame.Surface((snake_block, snake_block))
 ai_texture.fill(ai_color)
-
 
 if os.path.isfile('textures/background.png'):
     background_texture = pygame.image.load('textures/background.png')
